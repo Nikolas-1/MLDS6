@@ -2,57 +2,66 @@
 
 ## Nombre del Proyecto
 
-[Nombre del proyecto aquí]
+**Predicción del Precio de Viviendas con Machine Learning**
 
 ## Objetivo del Proyecto
 
-[Descripción breve del objetivo del proyecto y por qué es importante]
+Desarrollar un sistema predictivo que estime el precio de venta de una vivienda a partir de sus características físicas, antigüedad y de localización, con el fin de asistir a agentes inmobiliarios y portales de compra-venta en las valoraciones de inmuebles de una manera rápida y consistentes, optimizando el proceso de cotización y negociación.
 
 ## Alcance del Proyecto
 
 ### Incluye:
 
-- [Descripción de los datos disponibles]
-- [Descripción de los resultados esperados]
-- [Criterios de éxito del proyecto]
+Para el desarrollo de este proyecto se utilizará el conjunto de datos [House Sales in King County, USA](https://www.kaggle.com/datasets/harlfoxem/housesalesprediction/data), el cuál incluye información sobre la estructura, localización y precio de venta. Los registros de ventas están entre mayo del 2014 y mayo del 2015 (ver [diccionario de datos](../data/data_dictionary.md)).
+
+El modelo será capaz de predecir el precio estimado de una propiedad con base en sus atributos. Una FastAPI que permita enviar los datos de una casa y se obtenga la predicción. Para esto se usarán herramientas de versionamiento de código (Git/GitHub), versionamiento de datos (DVC), seguimiento de experimentos (MLflow) y documentación del proyecto.
+
+
+Los criterios de éxito incluyen los siguientes:
+
+- Alcanzar un error promedio absoluto (**MAE**) menor a $55000, lo que representa aproximadamente un 10% del valor promedio del mercado.
+- Control de versiones y reproducibilidad con Git, DVC y MLflow.
+- Reducir el tiempo estimado para la cotización de propiedades.
 
 ### Excluye:
 
-- [Descripción de lo que no está incluido en el proyecto]
+- Incorporación de fuentes externas de datos en tiempo real y, con esto, optimización de estrategias de precios dinámicos.
+
 
 ## Metodología
 
-[Descripción breve de la metodología que se utilizará para llevar a cabo el proyecto]
+Se seguirá la metodología **TDSP (Team Data Science Process)**, dividiendo el trabajo en entregables semanales, así:
+
+- Entendimiento del negocio y carga de datos
+- Preprocesamiento y análisis exploratorio
+- Modelamiento y experimentación
+- Despliegue
+- Evaluación y entrega final
 
 ## Cronograma
 
-| Etapa | Duración Estimada | Fechas |
-|------|---------|-------|
-| Entendimiento del negocio y carga de datos | 2 semanas | del 1 de mayo al 15 de mayo |
-| Preprocesamiento, análisis exploratorio | 4 semanas | del 16 de mayo al 15 de junio |
-| Modelamiento y extracción de características | 4 semanas | del 16 de junio al 15 de julio |
-| Despliegue | 2 semanas | del 16 de julio al 31 de julio |
-| Evaluación y entrega final | 3 semanas | del 1 de agosto al 21 de agosto |
-
-Hay que tener en cuenta que estas fechas son de ejemplo, estas deben ajustarse de acuerdo al proyecto.
+![Gantt chart](../images/gantt_chart.png)
 
 ## Equipo del Proyecto
 
-- [Nombre y cargo del líder del proyecto]
-- [Nombre y cargo de los miembros del equipo]
+- Laura Alejandra Díaz López
+- Nikolás Santacruz Mejía
 
 ## Presupuesto
 
-[Descripción del presupuesto asignado al proyecto]
+El proyecto se desarrolla localmente, usando equipos personales y herramientas open source, por lo que no requiere inversión adicional.
 
 ## Stakeholders
 
-- [Nombre y cargo de los stakeholders del proyecto]
-- [Descripción de la relación con los stakeholders]
-- [Expectativas de los stakeholders]
+- **Gerente de operaciones inmobiliarias:** responsables de la estrategia de ventas y necesitan herramientas que optimicen la fijación de precios y agilicen los tiempos de cotización para mejorar la tasa de cierre de negocios.
+  - **_Expecativa:_** que el modelo sea confiable y permita obtener estimaciones rápidas del valor de una propiedad, facilitando negociaciones con clientes y justificando precios sugeridos con datos históricos.
+- **Equipo de tecnología:** serán quienes mantendrán el modelo en producción, integrarán el API en los sistemas existentes y supervisarán el versionamiento de datos y modelos.
+  - **_Expecativa:_** que el proyecto siga buenas prácticas de desarrollo (como el uso de herramientas de versionamiento).
+- **Agentes inmobiliarios:** usarán directamente el sistema para obtener estimaciones rápidas del costo de viviendas. 
+  - **_Expecativa:_** que el sistema sea fácil de usar y rápido.
 
 ## Aprobaciones
 
-- [Nombre y cargo del aprobador del proyecto]
-- [Firma del aprobador]
-- [Fecha de aprobación]
+| Nombre y cargo del aprobador del proyecto       | Firma                      | Fecha de aprobación |
+|:----------:|:----------:|:----------:|
+| _____________________________________________________ | _____________________________ | ___ / ___ /______        |
