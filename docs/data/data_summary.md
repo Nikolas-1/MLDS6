@@ -4,24 +4,41 @@ Este documento contiene los resultados del análisis exploratorio de datos.
 
 ## Resumen general de los datos
 
-En esta sección se presenta un resumen general de los datos. Se describe el número total de observaciones, variables, el tipo de variables, la presencia de valores faltantes y la distribución de las variables.
+Se cuenta con 21 columnas y 21613 filas, estos datos son de ventas de viviendas en la ciudad de seattle USA, todos estos datos a excepción de la fecha, la cual esta en datetime, son numericos. Las variables que más afectan el precio de venta son el numero de habitaciones, baños y metros cuadrados, las demas variables tienen baja correlación. Finalmente no se cuenta con valores faltantes en el dataset.
 
 ## Resumen de calidad de los datos
 
-En esta sección se presenta un resumen de la calidad de los datos. Se describe la cantidad y porcentaje de valores faltantes, valores extremos, errores y duplicados. También se muestran las acciones tomadas para abordar estos problemas.
+El dataset no tiene valores nulos o faltantes, por lo que no se tendra que imputar o aplicar tecnicas de llenado, por otro lado si se encontrarón valores atipicos en la columna de precio ya que la mayor parte de la distribución esta en un rango similar de precio, esto probablemente sea por la ubicación geografica de la vivienda ya que los factores sociales pueden influir, este preprocesamiento se tratara en su script correspondiente.
 
 ## Variable objetivo
 
-En esta sección se describe la variable objetivo. Se muestra la distribución de la variable y se presentan gráficos que permiten entender mejor su comportamiento.
+La variable objetivo es el precio de las casas, como se menciono anteriormente la grafica tiene una distribución donde la mayor parte de los datos se concentran en la parte izquierda del grafico.
+
+![alt text](image.png)
+
+Por otro lado se grafico la tendencia del precio a lo largo del tiempo de acuerdo a la fecha de construcción de la vivienda y la fecha de venta de esta, y se obtuvo una grafica con rango de precios muy cercanos entre sí.
+
+![alt text](image-1.png)
 
 ## Variables individuales
 
-En esta sección se presenta un análisis detallado de cada variable individual. Se muestran estadísticas descriptivas, gráficos de distribución y de relación con la variable objetivo (si aplica). Además, se describen posibles transformaciones que se pueden aplicar a la variable.
+La siguiente figura corresponde a una matriz de correlación entre todas las variables del dataset, en esta se puede ver que las columnas que más afectan la variable objetivo son el numero de habitaciones, baños y el area.
+
+Existen relaciones entre otras variables debido a que son de naturaleza similar, como lo podria ser el area construida y el area del sotano o azotea.
+
+![alt text](image-2.png)
 
 ## Ranking de variables
 
-En esta sección se presenta un ranking de las variables más importantes para predecir la variable objetivo. Se utilizan técnicas como la correlación, el análisis de componentes principales (PCA) o la importancia de las variables en un modelo de aprendizaje automático.
+Las variables más importantes en la predicción del precio de venta son:
+
+1. Area construida
+2. Numero de baños
+3. Numero de Habitaciones
 
 ## Relación entre variables explicativas y variable objetivo
 
-En esta sección se presenta un análisis de la relación entre las variables explicativas y la variable objetivo. Se utilizan gráficos como la matriz de correlación y el diagrama de dispersión para entender mejor la relación entre las variables. Además, se pueden utilizar técnicas como la regresión lineal para modelar la relación entre las variables.
+Como se puede ver en el anterior grafico, a medida que aumentamos el area o el numero de habitaciones/baños el precio tiende a aumentar, esta tendencia se ve fuertemente aplicada con el area donde se visualiza claramente como este precio aumenta muy cercano a una tendencia lineal.
+
+
+![alt text](image-3.png)
