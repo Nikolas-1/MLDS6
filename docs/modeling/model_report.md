@@ -2,24 +2,101 @@
 
 ## Resumen Ejecutivo
 
-En esta sección se presentará un resumen de los resultados obtenidos del modelo final. Es importante incluir los resultados de las métricas de evaluación y la interpretación de los mismos.
+Este reporte presenta el modelo final desarrollado para predecir los precios de viviendas en Seattle utilizando técnicas de machine learning. Se empleó un modelo **XGBoost Regressor**, optimizado con **RandomizedSearchCV**.
+
+Los resultados del modelo final son los siguientes:
+
+- **MAE:** 64,862.27 USD  
+- **RMSE:** 123,755.52 USD  
+- **MSE:** 15,315,429,763.89  
+- **R²:** 0.8831
+
+Estos resultados representan una mejora significativa frente al modelo baseline, especialmente en el error absoluto y la varianza explicada. Esto indica que el modelo tiene un buen desempeño general y logra capturar adecuadamente las relaciones no lineales presentes en los datos.
 
 ## Descripción del Problema
 
-En esta sección se describirá el problema que se buscó resolver con el modelo final. Se debe incluir una descripción detallada del problema, el contexto en el que se desarrolla, los objetivos que se persiguen y la justificación del modelo.
+El problema abordado consiste en **predecir el precio de una vivienda** a partir de sus características estructurales, ubicación temporal (año, mes), condición, tamaño, entre otros. 
+
+Este es un problema de regresión supervisada, basado en el conjunto de datos "House Sales in King County" (Seattle) disponible en Kaggle. Predecir con precisión el precio de una vivienda es crucial para múltiples partes interesadas: compradores, vendedores, agentes inmobiliarios, y desarrolladores.
+
+El objetivo principal era construir un modelo preciso y generalizable, que mejorara el desempeño del modelo baseline y sirviera como base para una posible implementación práctica.
 
 ## Descripción del Modelo
 
-En esta sección se describirá el modelo final que se desarrolló para resolver el problema planteado. Se debe incluir una descripción detallada del modelo, la metodología utilizada y las técnicas empleadas.
+El modelo final utilizado fue **XGBoost Regressor**, una técnica de boosting basada en árboles de decisión, conocida por su alto rendimiento en tareas de regresión no lineales.
 
-## Evaluación del Modelo
+Se aplicó una búsqueda aleatoria de hiperparámetros (`RandomizedSearchCV`) sobre un espacio de 25 combinaciones y 3 validaciones cruzadas. Los parámetros óptimos encontrados fueron:
 
-En esta sección se presentará una evaluación detallada del modelo final. Se deben incluir las métricas de evaluación que se utilizaron y una interpretación detallada de los resultados.
+```json
+{
+  "colsample_bytree": 0.8591,
+  "gamma": 0.0026,
+  "learning_rate": 0.0805,
+  "max_depth": 5,
+  "min_child_weight": 7,
+  "n_estimators": 297,
+  "reg_alpha": 0.5107,
+  "reg_lambda": 0.4174,
+  "subsample": 0.6888
+}
+```
+
+Este modelo fue entrenado sobre un conjunto de datos preprocesado con las siguientes características:
+
+- Transformación logarítmica de variables altamente sesgadas, incluyendo price.
+
+- Eliminación de outliers evidentes.
+
+- Conversión de variables a indicadores binarios (has_basement, was_renovated).
+
+- Eliminación de columnas irrelevantes como id, zipcode, sqft_basement, yr_renovated.
+
+Las predicciones fueron destransformadas con np.expm1() para que las métricas se evaluaran en la escala original de los precios.
+
+## Descripción del Modelo
+
+El modelo final se basó en **XGBoost Regressor**, conocido por su capacidad de capturar relaciones no lineales en tareas de regresión.
+
+### Rendimiento del Modelo Optimizado
+
+Se evaluó el desempeño del modelo en el conjunto de prueba utilizando las principales métricas de regresión:
+
+| Métrica | Valor               |
+|---------|---------------------|
+| MAE     | 64,862.27 USD       |
+| RMSE    | 123,755.52 USD      |
+| MSE     | 15,315,429,763.89   |
+| R²      | 0.8831              |
+
+Estas métricas reflejan un modelo robusto, con un **error absoluto medio inferior a 65,000 USD** y una **capacidad explicativa del 88.31%**, lo que indica un buen ajuste a los datos.
+
+### Comparación con Modelo Base (XGBoost por defecto)
+
+Para validar la mejora, se entrenó un modelo base utilizando los parámetros por defecto de XGBoost:
+
+| Métrica | Valor (Modelo Base) |
+|---------|----------------------|
+| MAE     | 68,003.56 USD        |
+| RMSE    | 130,653.69 USD       |
+| R²      | 0.8697               |
+
+> La comparación evidencia que la **optimización de hiperparámetros con RandomizedSearchCV** mejoró de forma consistente las métricas clave, reforzando la importancia del ajuste fino en modelos avanzados.
+
 
 ## Conclusiones y Recomendaciones
 
-En esta sección se presentarán las conclusiones y recomendaciones a partir de los resultados obtenidos. Se deben incluir los puntos fuertes y débiles del modelo, las limitaciones y los posibles escenarios de aplicación.
+**Conclusiones:**
 
-## Referencias
+- El modelo final logra un excelente desempeño en la predicción de precios de viviendas, con un R² de 0.88 y un MAE por debajo de 65,000 USD.
 
-En esta sección se deben incluir las referencias bibliográficas y fuentes de información utilizadas en el desarrollo del modelo.
+- El uso de XGBoost permitió capturar relaciones no lineales complejas presentes en los datos.
+
+- La transformación logarítmica de price fue fundamental para estabilizar la varianza y mejorar las predicciones.
+
+**Recomendaciones:**
+
+- Evaluar la posibilidad de incorporar variables externas (por ejemplo: tasas de interés, ubicación geográfica enriquecida).
+
+- Probar técnicas de stacking o blending con otros modelos (Random Forest, SVR, LightGBM).
+
+- Realizar interpretabilidad del modelo (feature importance, SHAP) para entender los factores clave
