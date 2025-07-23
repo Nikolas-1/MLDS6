@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/764119309040730882/fae10b96ae2a466b91a278fac0801dfd/artifacts
+end_time: 1753229820777
+entry_point_name: ''
+experiment_id: '764119309040730882'
+lifecycle_stage: active
+run_id: fae10b96ae2a466b91a278fac0801dfd
+run_name: XGBoost(n=100, depth=6)
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753229813087
+status: 3
+tags: []
+user_id: laura

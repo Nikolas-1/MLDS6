@@ -6,10 +6,10 @@ Este reporte presenta el modelo final desarrollado para predecir los precios de 
 
 Los resultados del modelo final son los siguientes:
 
-- **MAE:** 64,862.27 USD  
-- **RMSE:** 123,755.52 USD  
-- **MSE:** 15,315,429,763.89  
-- **R²:** 0.8831
+- **MAE:** 65,136.67 USD  
+- **RMSE:** 126,678.78 USD  
+- **MSE:** 16,047,512,241.94  
+- **R²:** 0.878
 
 Estos resultados representan una mejora significativa frente al modelo baseline, especialmente en el error absoluto y la varianza explicada. Esto indica que el modelo tiene un buen desempeño general y logra capturar adecuadamente las relaciones no lineales presentes en los datos.
 
@@ -51,7 +51,7 @@ Este modelo fue entrenado sobre un conjunto de datos preprocesado con las siguie
 
 - Eliminación de columnas irrelevantes como id, zipcode, sqft_basement, yr_renovated.
 
-Las predicciones fueron destransformadas con np.expm1() para que las métricas se evaluaran en la escala original de los precios.
+Las predicciones fueron destransformadas con `np.expm1()` para que las métricas se evaluaran en la escala original de los precios.
 
 ## Descripción del Modelo
 
@@ -63,12 +63,12 @@ Se evaluó el desempeño del modelo en el conjunto de prueba utilizando las prin
 
 | Métrica | Valor               |
 |---------|---------------------|
-| MAE     | 64,862.27 USD       |
-| RMSE    | 123,755.52 USD      |
-| MSE     | 15,315,429,763.89   |
-| R²      | 0.8831              |
+| MAE     | 65,136.67 USD       |
+| RMSE    | 126,678.78 USD      |
+| MSE     | 16,047,512,241.94   |
+| R²      | 0.8775              |
 
-Estas métricas reflejan un modelo robusto, con un **error absoluto medio inferior a 65,000 USD** y una **capacidad explicativa del 88.31%**, lo que indica un buen ajuste a los datos.
+Estas métricas reflejan un modelo robusto, con un **error absoluto medio alrededor de 65,000 USD** y una **capacidad explicativa del 87.75%**, lo que indica un buen ajuste a los datos.
 
 ### Comparación con Modelo Base (XGBoost por defecto)
 
@@ -76,11 +76,11 @@ Para validar la mejora, se entrenó un modelo base utilizando los parámetros po
 
 | Métrica | Valor (Modelo Base) |
 |---------|----------------------|
-| MAE     | 68,003.56 USD        |
-| RMSE    | 130,653.69 USD       |
-| R²      | 0.8697               |
+| MAE     | 66,032.07 USD        |
+| RMSE    | 118,586.40 USD       |
+| R²      | 0.8948               |
 
-> La comparación evidencia que la **optimización de hiperparámetros con RandomizedSearchCV** mejoró de forma consistente las métricas clave, reforzando la importancia del ajuste fino en modelos avanzados.
+> La comparación evidencia que la **optimización de hiperparámetros con RandomizedSearchCV** mejoró la métrica objetivo (MAE), reforzando la importancia del ajuste fino en modelos avanzados.
 
 
 ## Conclusiones y Recomendaciones

@@ -53,14 +53,14 @@ Se utilizaron las siguientes métricas de regresión:
 
 | Modelo             | MAE         | RMSE         | MSE               | R²        |
 |--------------------|-------------|--------------|--------------------|-----------|
-| Linear Regression  | 106,937.11  | 175,858.13   | 30,926,084,016.41  | 0.764     |
+| Linear Regression  | 109,833.44  | 191,126.16   | 36,529,209,451.73  | 0.726     |
 
 > Las métricas fueron calculadas después de destransformar las predicciones (`np.expm1`) para que estén en la misma escala que los precios reales.
 
 ## Análisis de los resultados
 
-- El error absoluto promedio de **$106,937** sugiere que el modelo aún tiene margen de mejora, pero mejora significativamente con respecto al baseline sin transformación logarítmica.
-- Un R² de **0.76** indica que el modelo explica aproximadamente el 76% de la varianza en los datos de prueba.
+- El error absoluto promedio de **$109,833** sugiere que el modelo aún tiene margen de mejora, pero mejora significativamente con respecto al baseline sin transformación logarítmica.
+- Un R² de **0.726** indica que el modelo explica aproximadamente el 73% de la varianza en los datos de prueba.
 - La transformación logarítmica de la variable objetivo ayudó a estabilizar la varianza y mejorar la capacidad predictiva del modelo lineal.
 - El modelo puede beneficiarse de técnicas más avanzadas como regularización (Ridge/Lasso), modelos no lineales, tuning de hiperparámetros y mejores estrategias de selección de variables.
 

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/764119309040730882/6d062f70fd5747cb9fe5b6527060ed5d/artifacts
+end_time: 1753229776006
+entry_point_name: ''
+experiment_id: '764119309040730882'
+lifecycle_stage: active
+run_id: 6d062f70fd5747cb9fe5b6527060ed5d
+run_name: LinearRegression (Baseline model)
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753229771094
+status: 3
+tags: []
+user_id: laura

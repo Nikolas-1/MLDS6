@@ -1,0 +1,6 @@
+artifact_location: mlflow-artifacts:/764119309040730882
+creation_time: 1753229769000
+experiment_id: '764119309040730882'
+last_update_time: 1753229769000
+lifecycle_stage: active
+name: KC_House_MLflow_Regression
