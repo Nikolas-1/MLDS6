@@ -5,6 +5,7 @@ from fastapi import FastAPI
 import joblib
 import numpy as np
 import pandas as pd
+import os
 
 class ApiInput(BaseModel):
     bedrooms: int
@@ -31,7 +32,9 @@ class ApiOutput(BaseModel):
 app = FastAPI()
 
 # Carga del modelo
-model = joblib.load("src\model.joblib")
+#model = joblib.load("src\model.joblib")
+model_path = os.path.join("src", "model.joblib")
+model = joblib.load(model_path)
 
 @app.post("/house_price", response_model=ApiOutput)
 async def predict_price(data: ApiInput):
