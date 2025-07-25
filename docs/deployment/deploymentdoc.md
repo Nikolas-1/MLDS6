@@ -32,11 +32,11 @@
   - [railway.json](../../railway.json)
   - [src/model.joblib](../../src/model.joblib)
 
-- **Variables de entorno:** (lista de variables de entorno necesarias para el despliegue)
+- **Variables de entorno:** No se usó ninguna variable de entorno.
 
 ## Documentación del despliegue
 
-- **Instrucciones de instalación:** 
+- **Instrucciones de instalación (para uso en local):** 
   1. Clonar el repositorio del proyecto:
    ```
    git clone https://github.com/Nikolas-1/MLDS6.git
@@ -61,8 +61,8 @@
 - **Instrucciones de configuración:** 
   - Ejecuta:
   ```
-  cd scripts/deployment/deployment.py
-  uvicorn deployment:app --reload
+  cd scripts/deployment/
+  uvicorn --app-dir scripts/deployment/ deployment:app --reload
   ```
 - **Instrucciones de uso:** 
   - Una vez el servidor esté corriendo, abre tu navegador y visita http://127.0.0.1:8000/docs
@@ -71,3 +71,4 @@
     - Haz clic en "Try it out".
     - Ingresa los valores requeridos por el modelo en el formulario. Puedes ver [test.py](../../scripts/deployment/test.py) para una muestra de la estructura de la entrada.
     - Haz clic en "Execute" y verás la predicción como respuesta.
+
