@@ -33,7 +33,7 @@ app = FastAPI()
 
 # Carga del modelo
 #model = joblib.load("src\model.joblib")
-model_path = os.path.join("src", "model.joblib")
+model_path = os.path.join("../../src", "model.joblib")
 model = joblib.load(model_path)
 
 @app.post("/house_price", response_model=ApiOutput)
