@@ -87,7 +87,7 @@ Para validar la mejora, se entrenó un modelo base utilizando los parámetros po
 
 **Conclusiones:**
 
-- El modelo final logra un excelente desempeño en la predicción de precios de viviendas, con un R² de 0.88 y un MAE por debajo de 65,000 USD.
+- A pesar de que la meta inicial de $55.000 de MAE no se alcanzó, nuestros resultados son útiles para el problema planteado dentro de las condiciones y limitaciones actuales del proyecto. El modelo final logra un excelente desempeño en la predicción de precios de viviendas, con un R² de 0.88 y un MAE alrededor de los 65,000 USD.
 
 - El uso de XGBoost permitió capturar relaciones no lineales complejas presentes en los datos.
 
