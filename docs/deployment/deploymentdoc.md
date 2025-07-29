@@ -26,6 +26,10 @@
 ## Código de despliegue
 
 - **Archivo principal:** [deployment.py](../../scripts/deployment/deployment.py)
+
+  Este script implementa una API con FastAPI para predecir el precio de una vivienda a partir de sus características. Utiliza **Pydantic** para validar la entrada (`ApiInput`) y estructurar la salida (`ApiOutput`). El modelo, previamente entrenado y exportado con la librería `joblib`, se carga al iniciar. Al recibir una solicitud `POST` en `/house_price`, los datos se convierten en un DataFrame, se predice el logaritmo del precio y se aplica `np.expm1` para obtener el valor original, que se devuelve como respuesta.
+
+
 - **Rutas de acceso a los archivos:** 
   - [scripts/deployment/deployment.py](../../scripts/deployment/deployment.py)
   - [requirements.txt](../../requirements.txt)
@@ -36,39 +40,52 @@
 
 ## Documentación del despliegue
 
-- **Instrucciones de instalación (para uso en local):** 
-  1. Clonar el repositorio del proyecto:
-   ```
-   git clone https://github.com/Nikolas-1/MLDS6.git
-   cd MLDS6
-   ```
-  2. Crear y activar un entorno virtual (opcional):
-  - En Linux
-  ```
-  python -m venv venv
-  source venv/bin/activate
-  ```
-  - O en Windows:
-  ```
-  python3 -m venv venv
-  venv\Scripts\activate
-  ```
-  3. Instalar las dependencias necesarias:
-  ```
-  pip install -r requirements.txt
-  ```
+- **Instrucciones de instalación:** 
 
-- **Instrucciones de configuración:** 
-  - Ejecuta:
+  Una vez creados los archivos necesarios para el despliegue mencionados en la sección anterior (`deployment.py`, `requirements.txt`, `railway.json` y `model.joblib`), se realizó una prueba local desde la terminal utilizando el siguiente comando:
   ```
-  cd scripts/deployment/
   uvicorn --app-dir scripts/deployment/ deployment:app --reload
   ```
+
+  Para desplegar en la plataforma Railway, luego de crear una cuenta, se siguieron los siguientes pasos:
+
+  - Seleccionar **"New Project"** y luego **"Deploy from GitHub repo"**.
+
+  - Elegir el repositorio correspondiente.
+
+- **Instrucciones de configuración:**
+  - Una vez completado el despliegue, acceder a la sección **"Settings"** del proyecto y, dentro del apartado **"Networking"**, seleccionar **"Generate Domain"**. Esto genera una URL pública a través de la cual se puede acceder a la API desde cualquier navegador o cliente HTTP. En nuestro caso, la URL generada fue: https://mlds6-production-0dfb.up.railway.app.
+
 - **Instrucciones de uso:** 
-  - Una vez el servidor esté corriendo, abre tu navegador y visita http://127.0.0.1:8000/docs
-  - Para probar el modelo:
-    - Busca el endpoint POST /house_price.
-    - Haz clic en "Try it out".
-    - Ingresa los valores requeridos por el modelo en el formulario. Puedes ver [test.py](../../scripts/deployment/test.py) para una muestra de la estructura de la entrada.
-    - Haz clic en "Execute" y verás la predicción como respuesta.
+  - Acceder a https://mlds6-production-0dfb.up.railway.app/docs
+  - Buscar el endpoint `POST /house_price`.
+  - Hacer clic en **"Try it out"**.
+  - Ingresar los valores requeridos por el modelo en el formulario (ver [test.py](../../scripts/deployment/test.py) para un ejemplo de la estructura de entrada).
+   - Hacer clic en **"Execute"**. Esto devolverá la predicción del modelo según los valores de entrada proporcionados.
+
+  > Alternativamente, se puede realizar la solicitud mediante un script en Python utilizando la librería `requests`, apuntando al endpoint `/house_price` ([test.py](../../scripts/deployment/test.py) contiene un ejemplo de esto).
+
+- **Instrucciones de mantenimiento:**
+  
+  **1. Actualización del modelo entrenado:**
+    - Reentrenar el modelo localmente con nuevos datos si es necesario (se recomienda actualizar el modelo cada 2 a 6 meses, dependiendo de la variabilidad de los datos disponibles).
+    - Exportar el nuevo modelo con `joblib.dump()` en la misma ruta (`model.joblib`).
+    - Verificar el funcionamiento de la API ejecutando localmente:
+      ```
+      uvicorn --app-dir scripts/deployment/ deployment:app --reload
+      ```
+  **2. Subida de cambios a GitHub:**
+    - Utilizar los siguientes comandos para registrar y enviar los cambios realizados al repositorio remoto:
+      ```
+      git add src/model.joblib
+      git commit -m "Retrained prediction model"
+      git push origin master
+      ```
+      > Railway detectará automáticamente el cambio y volverá a desplegar la aplicación.
+
+  **Consideraciones importantes:**
+    - Reentrenar cada 2 a 6 meses, según la evolución del mercado (inflación, urbanismo, etc.).
+    - Comparar predicciones con precios reales recientes para detectar desviaciones (drift) y decidir si se requiere un nuevo entrenamiento.
+    - Se recomienda usar MLflow para gestionar experimentos, métricas, artefactos y facilitar el seguimiento del ciclo de vida del modelo.
+    - Antes del despliegue es importante verificar que `model.joblib` cargue sin errores, que `/house_price` funcione correctamente y que `/docs` refleje la estructura de entrada esperada.
 

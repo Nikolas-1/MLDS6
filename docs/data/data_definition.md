@@ -28,7 +28,7 @@ El script de preprocesamiento se puede encontrar [aquí](../../scripts/preproces
   - `bedrooms`: se excluyen registros que contienen los valores 0 o 33 en este campo.
   - `bathrooms`: se excluyen registros que contienen 0 en este campo.
 
-- Aplicar la transformación logarítmica `np.log1p()` a variables con fuerte sesgo positivo (o a la derecha):
+- Aplicar la transformación logarítmica `np.log1p()` a variables con fuerte asimetría positiva (o a la derecha):
   - `price`: Nuestra variable **objetivo**. En este caso es necesario hacer _back-transform_ a las predicciones.
   - `sqft_living`
   - `sqft_lot`
